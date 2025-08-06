@@ -34,7 +34,7 @@ func generateCertificatePDF(req CertificateRequest) ([]byte, error) {
         return nil, fmt.Errorf("unknown company template: %s", req.Company)
     }
 
-    pdf := gofpdf.New("L", "mm", "A4", "") // Landscape A4
+    pdf := gofpdf.New("L", "mm", "A4", "") 
     pdf.AddPage()
 
     // Add background image covering full A4 page (297x210)
