@@ -9,11 +9,14 @@ import (
 )
 
 type CertificateRequest struct {
-    Name     string `json:"name"`
-    Company  string `json:"company"`  // company key like "companyA"
-    Position string `json:"position"`
-    Duration string `json:"duration"`
+    Name      string `json:"name"`
+    Company   string `json:"company"` // e.g., template ID
+    Position  string `json:"position"`
+    Duration  string `json:"duration"`
+    StartDate string `json:"startdate"`
+    EndDate   string `json:"enddate"`
 }
+
 
 func generateHandler(w http.ResponseWriter, r *http.Request) {
     if r.Method != http.MethodPost {
