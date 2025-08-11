@@ -1,10 +1,9 @@
 {
   "template_id": "t1",
-  "background_image": "templates/companyA.png",
+  "background_image": "companyA.png",
   "fields": {
-    "name":      { "x": 10, "y": 93,  "font_size": 35, "font_style": "BI", "color": [25, 25, 112] },
-    "download_date": { "x": 241.16, "y": 60.59, "font_size": 13, "font_style": "", "color": [110, 110, 110] },
-     "description": {"x": 50, "y": 150, "font_size": 14, "font_style": "", "color": [0, 0, 0]
-    }
+    "name":      {  "y": 115, "font_size": 30, "font_style": "BI", "font_family": "Arial", "color": [25, 25, 112] },
+    "download_date": { "x": 241.16, "y": 60.59, "font_size": 13, "font_family": "Arial", "font_style": "B", "color": [110, 110, 110] },
+    "description": { "x": 75, "y": 130, "font_size": 18,  "font_family": "Arial", "font_style": "", "color": [0, 0, 0] }
   }
 }
