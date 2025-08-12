@@ -1,8 +1,7 @@
 certificates
 go.mod
-pdf-generator/templates/*.jpg
-pdf-generator/templates/*.png
-pdf-generator/go.mod
-pdf-generator/go.sum
-backend/go.mod
-backend/go.sum
+backend/pdf-generator/templates/*.jpg
+backend/pdf-generator/templates/*.png
+backend/pdf-generator/go.mod
+backend/pdf-generator/go.sum
+backend/api-gateway/go.mod
