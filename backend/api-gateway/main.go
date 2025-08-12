@@ -167,6 +167,6 @@ func main() {
 	http.HandleFunc("/generate", generateHandler)
 	http.Handle("/templates/", http.StripPrefix("/templates/", http.FileServer(http.Dir("templates"))))
 
-	log.Println("PDF Generation Service running on :8081")
-	log.Fatal(http.ListenAndServe(":8081", nil))
+	log.Println("PDF Generation Service running on :8082")
+	log.Fatal(http.ListenAndServe(":8082", nil))
 }

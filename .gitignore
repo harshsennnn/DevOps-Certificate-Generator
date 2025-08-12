@@ -4,3 +4,5 @@ pdf-generator/templates/*.jpg
 pdf-generator/templates/*.png
 pdf-generator/go.mod
 pdf-generator/go.sum
+backend/go.mod
+backend/go.sum
