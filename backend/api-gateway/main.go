@@ -25,7 +25,6 @@ func forwardToPDFGenerator(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Re-encode the request to send to PDF generator
 	jsonData, _ := json.Marshal(req)
 	resp, err := http.Post("http://localhost:8081/generate-certificate", "application/json", bytes.NewBuffer(jsonData))
 	if err != nil {
@@ -39,7 +38,6 @@ func forwardToPDFGenerator(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Disposition", resp.Header.Get("Content-Disposition"))
 	w.WriteHeader(resp.StatusCode)
 
-	// Forward the PDF bytes
 	io.Copy(w, resp.Body)
 }
 
