@@ -24,12 +24,12 @@ type CertificateRequest struct {
 }
 
 type TextFieldPosition struct {
-	X          float64  `json:"x"`
-	Y          float64  `json:"y"`
-	FontSize   int      `json:"font_size"`
-	FontFamily string   `json:"font_family"`
-	FontStyle  string   `json:"font_style"`
-	Color      [3]int   `json:"color"`
+	X          float64 `json:"x"`
+	Y          float64 `json:"y"`
+	FontSize   int     `json:"font_size"`
+	FontFamily string  `json:"font_family"`
+	FontStyle  string  `json:"font_style"`
+	Color      [3]int  `json:"color"`
 }
 
 type CertificateTemplate struct {
@@ -79,7 +79,6 @@ func generateCertificatePDF(req CertificateRequest) ([]byte, error) {
 	pdf := gofpdf.New("L", "mm", "A4", "")
 	pdf.AddPage()
 
-	// Background image
 	bgPath := filepath.Join("templates", template.BackgroundImage)
 	ext := strings.ToLower(filepath.Ext(bgPath))
 	imgType := map[string]string{
@@ -92,7 +91,6 @@ func generateCertificatePDF(req CertificateRequest) ([]byte, error) {
 	}
 	pdf.ImageOptions(bgPath, 0, 0, 297, 210, false, gofpdf.ImageOptions{ImageType: imgType, ReadDpi: true}, 0, "")
 
-	// Values to fill
 	values := map[string]string{
 		"name":          strings.ToUpper(req.Name),
 		"download_date": req.DownloadDate,
@@ -102,19 +100,15 @@ func generateCertificatePDF(req CertificateRequest) ([]byte, error) {
 		),
 	}
 
-	// Place text
 	for field, pos := range template.Fields {
 		val, exists := values[field]
 		if !exists || strings.TrimSpace(val) == "" {
 			continue
 		}
 
-		log.Printf("Placing %q at X=%.2f, Y=%.2f", field, pos.X, pos.Y)
-
 		if field == "description" {
 			drawText(pdf, pos.X, pos.Y, pos.FontFamily, pos.FontStyle, pos.FontSize, pos.Color, val, 180)
 		} else if field == "name" {
-			// Center align name
 			pdf.SetFont(pos.FontFamily, pos.FontStyle, float64(pos.FontSize))
 			width := pdf.GetStringWidth(val)
 			centerX := (310 - width) / 2
@@ -141,7 +135,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	pdfBytes, err := generateCertificatePDF(req)
 	if err != nil {
 		http.Error(w, "Failed to generate certificate: "+err.Error(), http.StatusInternalServerError)
-		log.Println("PDF generation error:", err)
 		return
 	}
 
@@ -152,6 +145,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/generate-certificate", handler)
-	fmt.Println("Server started on http://localhost:8082")
-	log.Fatal(http.ListenAndServe(":8082", nil))
+	log.Println("PDF Generator running on :8081")
+	log.Fatal(http.ListenAndServe(":8081", nil))
 }
