@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CertificateForm from "./components/CertificateForm";
-import CertificatePreview from "./components/CertificatePreview";
+// import CertificatePreview from "./components/CertificatePreview";
 import "./App.css";
 
 export default function App() {
