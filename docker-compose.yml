@@ -1,0 +1,38 @@
+version: "3.9"
+
+networks:
+  certnet:
+    driver: bridge
+
+services:
+  apigateway:
+    build:
+      context: ./backend/api-gateway
+    container_name: api-gateway
+    ports:
+      - "8082:8082"
+    networks:
+      - certnet
+    depends_on:
+      - pdf-generator
+
+  pdf-generator:
+    build:
+      context: ./backend/pdf-generator
+    container_name: pdf-generator
+    ports:
+      - "8081:8081"
+    networks:
+      - certnet
+
+  frontend:
+    build:
+      context: ./frontend
+      target: prod
+    container_name: cert-frontend
+    ports:
+      - "80:80"
+    networks:
+      - certnet
+    depends_on:
+      - apigateway

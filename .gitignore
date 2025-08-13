@@ -57,3 +57,7 @@ backend/pdf-generator/templates/*.png
 # Package locks if not required
 package-lock.json
 yarn.lock
+
+backend/api-gateway/go.mod
+backend/pdf-generator/go.mod
+backend/pdf-generator/go.sum
