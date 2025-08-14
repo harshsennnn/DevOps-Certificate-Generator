@@ -28,21 +28,21 @@ jobs:
       # Build & Push API Gateway
       - name: Build & Push API Gateway
         run: |
-          docker build ./backend/api-gateway/ \
+          docker build ./backend/api-gateway \
             -t $DOCKER_USER/devops-certificate-generator-apigateway:$IMAGE_TAG
           docker push $DOCKER_USER/devops-certificate-generator-apigateway:$IMAGE_TAG
 
       # Build & Push PDF Generator
       - name: Build & Push PDF Generator
         run: |
-          docker build ./backend/pdf-generator/ \
+          docker build ./backend/pdf-generator \
             -t $DOCKER_USER/devops-certificate-generator-pdf-generator:$IMAGE_TAG
           docker push $DOCKER_USER/devops-certificate-generator-pdf-generator:$IMAGE_TAG
 
       # Build & Push Frontend
       - name: Build & Push Frontend
         run: |
-          docker build ./frontend/ \
+          docker build ./frontend \
             -t $DOCKER_USER/devops-certificate-generator-frontend:$IMAGE_TAG
           docker push $DOCKER_USER/devops-certificate-generator-frontend:$IMAGE_TAG
 
