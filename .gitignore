@@ -54,18 +54,13 @@ backend/api-gateway/api-gateway
 backend/pdf-generator/templates/*.jpg
 backend/pdf-generator/templates/*.png
 
-# Package locks if not required
-package-lock.json
+
 yarn.lock
 
 #backend/api-gateway/go.mod
 #backend/pdf-generator/go.mod
-backend/pdf-generator/go.sum
+#backend/pdf-generator/go.sum
 
-# congigs
-frontend/eslint.config.js
-frontend/package-lock.json
-frontend/package.json
-frontend/vite.config.js
+
 
 kind-cluster-config.yaml
