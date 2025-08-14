@@ -6,6 +6,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"os"
 )
 
 type CertificateRequest struct {
@@ -26,7 +27,14 @@ func forwardToPDFGenerator(w http.ResponseWriter, r *http.Request) {
 	}
 
 	jsonData, _ := json.Marshal(req)
-	resp, err := http.Post("http://localhost:8081/generate-certificate", "application/json", bytes.NewBuffer(jsonData))
+
+	// Read target URL from environment variable, default to localhost for local dev
+	pdfGeneratorURL := os.Getenv("PDF_GENERATOR_URL")
+	if pdfGeneratorURL == "" {
+		pdfGeneratorURL = "http://localhost:8081"
+	}
+
+	resp, err := http.Post(pdfGeneratorURL+"/generate-certificate", "application/json", bytes.NewBuffer(jsonData))
 	if err != nil {
 		http.Error(w, "Error connecting to PDF generator", http.StatusInternalServerError)
 		return
