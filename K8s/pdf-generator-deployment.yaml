@@ -1,23 +1,44 @@
-apiVersion: v1
-kind: PersistentVolume
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: pdf-templates-pv
+  name: pdf-generator
 spec:
-  capacity:
-    storage: 1Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: /absolute/path/to/your/templates    # Change this to your real full path
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pdf-generator
+  template:
+    metadata:
+      labels:
+        app: pdf-generator
+    spec:
+      containers:
+        - name: pdf-generator
+          image: harshsen/devops-certificate-generator-pdf-generator:latest
+          ports:
+            - containerPort: 8081
+          volumeMounts:
+            - name: templates-volume
+              mountPath: /templates
+        - name: debug-shell
+          image: busybox
+          command: [ "sh", "-c", "sleep infinity" ]
+          volumeMounts:
+            - name: templates-volume
+              mountPath: /templates
+      volumes:
+        - name: templates-volume
+          persistentVolumeClaim:
+            claimName: pdf-templates-pvc
 ---
 apiVersion: v1
-kind: PersistentVolumeClaim
+kind: Service
 metadata:
-  name: pdf-templates-pvc
+  name: pdf-generator
 spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
-  volumeName: pdf-templates-pv
+  selector:
+    app: pdf-generator
+  ports:
+    - port: 8081
+      targetPort: 8081
+  clusterIP: None

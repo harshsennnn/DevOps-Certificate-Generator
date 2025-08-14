@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: <your-dockerhub-username>/frontend:latest
+          image: harshsen/devops-certificate-generator-frontend:latest
           ports:
             - containerPort: 80
 ---
@@ -25,7 +25,8 @@ metadata:
 spec:
   selector:
     app: frontend
+  type: NodePort
   ports:
     - port: 80
       targetPort: 80
-  type: NodePort
+      nodePort: 30130

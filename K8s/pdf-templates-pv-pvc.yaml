@@ -5,10 +5,14 @@ metadata:
 spec:
   capacity:
     storage: 1Gi
+  volumeMode: Filesystem
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: manual
   hostPath:
-    path: /home/harsh/projects/DevOps-Certificate-Generator/backend/pdf-generator/templates    # Change this to your real full path
+    path: /mnt/pdf-templates
+
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -16,8 +20,89 @@ metadata:
   name: pdf-templates-pvc
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
+  storageClassName: manual
   resources:
     requests:
       storage: 1Gi
-  volumeName: pdf-templates-pv
+
+
+##apiVersion: v1
+##kind: PersistentVolume
+##metadata:
+##  name: pdf-templates-pv
+##spec:
+##  capacity:
+##    storage: 1Gi
+##  accessModes:
+##    - ReadWriteOnce
+##  hostPath:
+##    path: /pdf-templates  # The path inside the Kind container
+##---
+##apiVersion: v1
+##kind: PersistentVolumeClaim
+##metadata:
+##  name: pdf-templates-pvc
+##spec:
+##  accessModes:
+##    - ReadWriteOnce
+##  resources:
+##    requests:
+##      storage: 1Gi
+##  volumeName: pdf-templates-pv
+#
+#
+## pv-pvc.yaml
+##apiVersion: v1
+##kind: PersistentVolume
+##metadata:
+##  name: pdf-templates-pv
+##spec:
+##  capacity:
+##    storage: 1Gi
+##  accessModes:
+##    - ReadWriteOnce
+##  hostPath:
+##    path: /mnt/pdf-templates  # matches Kind mount
+##---
+##apiVersion: v1
+##kind: PersistentVolumeClaim
+##metadata:
+##  name: pdf-templates-pvc
+##spec:
+##  accessModes:
+##    - ReadWriteOnce
+##  resources:
+##    requests:
+##      storage: 1Gi
+##  volumeName: pdf-templates-pv
+#
+#
+## pv-pvc.yaml
+#apiVersion: v1
+#kind: PersistentVolume
+#metadata:
+#  name: pdf-templates-pv
+#spec:
+#  storageClassName: standard   # <-- match PVC
+#  capacity:
+#    storage: 1Gi
+#  accessModes:
+#    - ReadWriteOnce
+#  hostPath:
+#    path: /mnt/pdf-templates
+#---
+#apiVersion: v1
+#kind: PersistentVolumeClaim
+#metadata:
+#  name: pdf-templates-pvc
+#spec:
+#  storageClassName: standard   # <-- match PV
+#  accessModes:
+#    - ReadWriteOnce
+#  resources:
+#    requests:
+#      storage: 1Gi
+#  volumeName: pdf-templates-pv
+
+# pdf-templates-pv.yaml
