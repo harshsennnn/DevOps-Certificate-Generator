@@ -58,8 +58,8 @@ backend/pdf-generator/templates/*.png
 package-lock.json
 yarn.lock
 
-backend/api-gateway/go.mod
-backend/pdf-generator/go.mod
+#backend/api-gateway/go.mod
+#backend/pdf-generator/go.mod
 backend/pdf-generator/go.sum
 
 # congigs
@@ -67,3 +67,5 @@ frontend/eslint.config.js
 frontend/package-lock.json
 frontend/package.json
 frontend/vite.config.js
+
+kind-cluster-config.yaml
