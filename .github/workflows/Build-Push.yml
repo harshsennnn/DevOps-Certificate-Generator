@@ -28,7 +28,7 @@ jobs:
       # Build & Push API Gateway
       - name: Build & Push API Gateway
         run: |
-          docker build ./backend/apigateway/ \
+          docker build ./backend/api-gateway/ \
             -t $DOCKER_USER/devops-certificate-generator-apigateway:$IMAGE_TAG
           docker push $DOCKER_USER/devops-certificate-generator-apigateway:$IMAGE_TAG
 
