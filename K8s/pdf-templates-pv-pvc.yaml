@@ -8,7 +8,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: \\wsl.localhost\Ubuntu-22.04\home\harsh\projects\DevOps-Certificate-Generator\backend\pdf-generator\templates    # Change this to your real full path
+    path: /home/harsh/projects/DevOps-Certificate-Generator/backend/pdf-generator/templates    # Change this to your real full path
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
