@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pdf-templates-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: \\wsl.localhost\Ubuntu-22.04\home\harsh\projects\DevOps-Certificate-Generator\backend\pdf-generator\templates    # Change this to your real full path
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pdf-templates-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  volumeName: pdf-templates-pv
