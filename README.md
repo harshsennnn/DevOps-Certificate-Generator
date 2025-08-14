@@ -16,7 +16,8 @@ This project focuses on creating a streamlined solution for generating Internshi
 
 - **`Kubernetes`**: Orchestrates the deployment and management of containerized applications, ensuring scalability and high availability.
   - **`KIND(Kubernetes in Docker)`** Deploying application to test the functionality localy using Kind Cluster. 
-  - **`AWS EKS`**: Deploying the application on prodcution using AWS EKS cluster. 
+  - **`AWS EKS`**: Deploying the application on prodcution using AWS EKS cluster.
+  - **`MicroK8s`**: Deploying the application on lightweight, single-node Kubernetes using MicroK8s for local development or edge environments.
 
 - **`AWS S3`**: Provides secure storage for generated QR codes, allowing for persistent data storage and easy accessibility.
 
