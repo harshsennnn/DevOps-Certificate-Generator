@@ -398,6 +398,11 @@ func getTemplates(w http.ResponseWriter, r *http.Request) {
 	w.Write(data)
 }
 
+func init() {
+	cwd, _ := os.Getwd()
+	fmt.Println("Current working directory:", cwd)
+}
+
 func main() {
 	http.HandleFunc("/generate-certificate", withCORS(handler))
 	http.HandleFunc("/templates", withCORS(getTemplates))
