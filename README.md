@@ -1,11 +1,18 @@
 # DevOps Certificate Generator
 
 This project focuses on creating a streamlined solution for generating Internship Certificates from user-selected Template. It features a user-friendly `React.js` front end for template selections and details input, a robust `GO` backend for certificate generation, and a secure storage system for saving the generated codes.
+The application is split into decoupled components to ensure scalability and ease of deployment:
 
-- `Front-End Container:` User-facing website for certificate template selection.
-- `API Container:` Backend service for certificate generation.
-- `Storage Container:` Secure storage for generated certificates.
+## Project Architecture
 
+  Frontend (React.js): A user-friendly interface for selecting templates and inputting intern details.
+
+  Backend (Go Microservice): A high-concurrency API responsible for processing data and generating PDF/Image certificates.
+
+  Storage (AWS S3): Secure, persistent storage for generated certificates and assets.
+
+  Infrastructure: Automated provisioning and orchestration using Terraform and Kubernetes (EKS/KIND/MicroK8s).
+    
 # Cloud & DevOps Practices
 
 - **`Docker`**: Used for containerizing the front-end (React.js) and API (Go) to ensure consistent deployment across environments.
@@ -17,7 +24,7 @@ This project focuses on creating a streamlined solution for generating Internshi
 - **`Kubernetes`**: Orchestrates the deployment and management of containerized applications, ensuring scalability and high availability.
   - **`KIND(Kubernetes in Docker)`** Deploying application to test the functionality localy using Kind Cluster. 
   - **`AWS EKS`**: Deploying the application on prodcution using AWS EKS cluster.
-  - **`MicroK8s`**: Deploying the application on lightweight, single-node Kubernetes using MicroK8s for local development or edge environments.
+  - **`K3s`**: Deploying the application on lightweight, single-node Kubernetes using MicroK8s for local development or edge environments.
 
 - **`AWS S3`**: Provides secure storage for generated QR codes, allowing for persistent data storage and easy accessibility.
 
